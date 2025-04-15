@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Custom Prompt</title>
+    <style>
+      #customPrompt {
+        display: none;
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 1em;
+        border: 2px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="overlay"></div>
+
+    <div id="customPrompt">
+      <p>Enter your name:</p>
+      <input type="text" id="userInput" />
+      <button onclick="submitPrompt()">OK</button>
+    </div>
+
+    <button onclick="showPrompt()">Click to Enter Name</button>
+    <p id="result"></p>
+
+    <script>
+      function showPrompt() {
+        document.getElementById("customPrompt").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("userInput").value = "";
+        document.getElementById("userInput").focus();
+      }
+
+      function submitPrompt() {
+        const input = document.getElementById("userInput").value;
+        document.getElementById("customPrompt").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("result").innerText = "Hello, " + input + "!";
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Prompt</title>
+  <style>
+    .custom-prompt-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .custom-prompt {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px #000;
+      max-width: 90%;
+      width: 300px;
+      font-family: sans-serif;
+    }
+
+    .custom-prompt h2 {
+      margin-top: 0;
+    }
+
+    .custom-prompt input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+    }
+
+    .custom-prompt .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .custom-prompt button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+const customPrompt = (message, placeholder = '') => {
+  return new Promise((resolve) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-prompt-overlay';
+
+    const promptBox = document.createElement('div');
+    promptBox.className = 'custom-prompt';
+
+    promptBox.innerHTML = `
+      <h2>${message}</h2>
+      <input type="text" placeholder="${placeholder}">
+      <div class="buttons">
+        <button class="cancel">Cancel</button>
+        <button class="ok">OK</button>
+      </div>
+    `;
+
+    overlay.appendChild(promptBox);
+    document.body.appendChild(overlay);
+
+    const input = promptBox.querySelector('input');
+    input.focus();
+
+    promptBox.querySelector('.ok').onclick = () => {
+      resolve(input.value);
+      document.body.removeChild(overlay);
+    };
+
+    promptBox.querySelector('.cancel').onclick = () => {
+      resolve(null);
+      document.body.removeChild(overlay);
+    };
+  });
+};
+
+// Example usage:
+console.log(customPrompt("hello","john"));
+
+</script>
+
+
+</body>
+</html>

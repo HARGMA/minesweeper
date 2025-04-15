@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="boom.css" />
+    <title>5ra by ayhem</title>
+  </head>
+  <body>
+    <!-- <div id="overlay">
+
+    <div id="customPrompt">
+      <p id="prompt"></p>
+      <input type="text" id="userInput" />
+      <input type="button"  value="OK" id="submit"></input>
+    </div>
+  </div> -->
+
+    <div id="main">
+      <div class="header">
+        <h3 style="margin:2%" >5ra🌹</h3>
+        <div class="flagerey" style="display:flex; margin: 2%;">
+          <h2 id="flags" >0</h2>
+          <h2>🚩</h2>
+      </div>
+      </div>
+    <table id="table">
+      <!-- Generate a 10x10 grid -->
+      <script>
+        document.write("<tbody>");
+        for (let i = 0; i < 10; i++) {
+          document.write("<tr>");
+          for (let j = 0; j < 10; j++) {
+            document.write(
+              "<td><button class='image-button button' onclick='choose(" + i + "," + j + ")'> </button></td>"
+            );
+          }
+          document.write("</tr>");
+        }
+        document.write("</tbody>");
+      </script>
+    </table>
+    <div class="lota">
+      <input type="radio" name="choose" id="bomb" checked>💣
+      <input type="radio" name="choose" id="flag">🚩
+    </div>
+    
+      <div class="msg">
+        
+      <a href="boom.html" class="button-class" style="margin: 2%;">replay</a>
+    <p id="msg" ></p>
+  
+  </div>
+  </div>
+
+  </body>
+  <script src="boom.js"></script>
+</html>
